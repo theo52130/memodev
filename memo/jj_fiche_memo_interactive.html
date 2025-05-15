@@ -79,10 +79,22 @@
                 <code>jj log</code>
 
                 # Créer un commit
-                <code>jj commit -m "Message de commit"</code>
+                <code>jj new -m "Message de commit"</code>
 
                 # Ajouter un signet (bookmark)
                 <code>jj bookmark create nom-bookmark</code>
+
+                # Ou utiliser un signet existant
+                <code>jj bookmark track nom-branch@origin</code>
+
+                # pusher vers un dépôt distant
+                <code>jj git push</code>
+
+                # Pousser vers un signet spécifique
+                <code>jj git push -r nom-bookmark</code>
+
+                # Pousser vers un origine spécifique
+                <code>jj git push -r origin nom-bookmark</code>
             </pre>
 
             <h3 id="naviguer-historique">Naviguer dans l'historique</h3>
