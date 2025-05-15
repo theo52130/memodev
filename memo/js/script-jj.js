@@ -165,47 +165,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Traiter les blocs de code avec structure pre>code directement intégré
-    document.querySelectorAll('pre > code:not(.code-container *)').forEach(codeElement => {
-        const commandText = codeElement.textContent.trim();
-        const copyBtn = createCopyButton(commandText);
-        const wrapper = document.createElement('div');
-        wrapper.className = 'code-line-container';
-        
-        // Remplacer l'élément code par le wrapper
-        codeElement.parentNode.insertBefore(wrapper, codeElement);
-        wrapper.appendChild(codeElement);
-        wrapper.appendChild(copyBtn);
-    });
-    
-    // Ajouter un bouton "Copier tout" pour chaque bloc pre qui n'en a pas encore
-    document.querySelectorAll('pre:not(:has(.copy-btn))').forEach(preBlock => {
-        if (!preBlock.querySelector('.copy-btn')) {
-            const copyAllBtn = document.createElement('button');
-            copyAllBtn.className = 'copy-btn';
-            copyAllBtn.textContent = 'Copier tout';
-            preBlock.style.position = 'relative';
-            preBlock.appendChild(copyAllBtn);
-            
-            copyAllBtn.addEventListener('click', function() {
-                // Collecter toutes les commandes du bloc
-                const commands = [];
-                preBlock.querySelectorAll('code').forEach(code => {
-                    commands.push(code.textContent.trim());
-                });
-                
-                navigator.clipboard.writeText(commands.join('\n'))
-                    .then(() => {
-                        copyAllBtn.textContent = 'Copié !';
-                        setTimeout(() => {
-                            copyAllBtn.textContent = 'Copier tout';
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('Erreur de copie:', err);
-                        copyAllBtn.textContent = 'Erreur';
-                    });
-            });
-        }
-    });
+    // Gérer le bouton de retour à l'accueil
+    const backButton = document.querySelector('.back-button');
+    if (backButton) {
+        backButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
+    }
 });

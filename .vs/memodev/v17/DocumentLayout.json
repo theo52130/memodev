@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\jj_fiche_memo_interactive.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:memo\\jj_fiche_memo_interactive.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\css\\style-jj.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:memo\\css\\style-jj.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\js\\script-jj.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:memo\\js\\script-jj.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "jj_fiche_memo_interactive.html",
+              "DocumentMoniker": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\jj_fiche_memo_interactive.html",
+              "RelativeDocumentMoniker": "memo\\jj_fiche_memo_interactive.html",
+              "ToolTip": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\jj_fiche_memo_interactive.html*",
+              "RelativeToolTip": "memo\\jj_fiche_memo_interactive.html*",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAUwHoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-15T21:29:45.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "style-jj.css",
+              "DocumentMoniker": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\css\\style-jj.css",
+              "RelativeDocumentMoniker": "memo\\css\\style-jj.css",
+              "ToolTip": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\css\\style-jj.css",
+              "RelativeToolTip": "memo\\css\\style-jj.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-15T21:29:44.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "script-jj.js",
+              "DocumentMoniker": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\js\\script-jj.js",
+              "RelativeDocumentMoniker": "memo\\js\\script-jj.js",
+              "ToolTip": "C:\\Users\\theo5\\Documents\\GitHub\\memodev\\memo\\js\\script-jj.js",
+              "RelativeToolTip": "memo\\js\\script-jj.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-15T21:29:42.548Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

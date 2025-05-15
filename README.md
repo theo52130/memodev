@@ -81,4 +81,4 @@ Ce projet est distribué sous la licence MIT. Voir le fichier `LICENSE` pour plu
 
 ## 📅 Dernière mise à jour
 
-Mai 2024
+Mai 2025
