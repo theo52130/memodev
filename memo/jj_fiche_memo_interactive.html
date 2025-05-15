@@ -95,6 +95,12 @@
 
                 # Pousser vers un origine spécifique
                 <code>jj git push -r origin nom-bookmark</code>
+
+                # 1. Créer un bookmark qui pointe vers le commit parent
+                <code>jj bookmark create parent-version -r @-</code>
+
+                # 2. Pousser ce bookmark vers GitHub
+                <code>jj git push -r parent-version</code>
             </pre>
 
             <h3 id="naviguer-historique">Naviguer dans l'historique</h3>
@@ -142,6 +148,12 @@
 
                 # Supprimer un bookmark
                 <code>jj bookmark delete nom-bookmark</code>
+
+                # Définir un bookmark sur la copie de travail actuelle
+                <code>jj bookmark set nom-bookmark -r @</code>
+    
+                # Définir un bookmark sur le commit parent
+                <code>jj bookmark set nom-bookmark -r @-</code>
             </pre>
             
             <h3 id="modification-historique">Modification de l'historique</h3>
