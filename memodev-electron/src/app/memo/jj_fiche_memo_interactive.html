@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémo JJ (jujutsu)</title>
+    <link rel="stylesheet" href="css/style-jj.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="back-button" title="Retour à l'accueil">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <h1>Mémo JJ (jujutsu)</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#debutant">Débutant</a></li>
+                <li><a href="#intermediaire">Intermédiaire</a></li>
+                <li><a href="#avance">Avancé</a></li>
+                <li><a href="#workflows">Workflows</a></li>
+                <li><a href="#comparaison">Comparaison avec Git</a></li>
+                <li><a href="#ressources">Ressources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="debutant">
+            <h2>Niveau Débutant</h2>
+            
+            <h3 id="introduction">Introduction à JJ</h3>
+            <p>JJ (jujutsu) est un système de contrôle de version distribué conçu comme une alternative à Git. Il se concentre sur l'interface utilisateur et la facilité d'utilisation tout en préservant la puissance des systèmes de contrôle de version modernes.</p>
+            <ul>
+                <li>Interface utilisateur simple et intuitive</li>
+                <li>Performance similaire à Git</li>
+                <li>Compatible avec les dépôts Git existants</li>
+                <li>Une approche orientée vers les utilisateurs et non les détails d'implémentation</li>
+            </ul>
+            
+            <h3 id="installation">Installation</h3>
+            <pre>
+                # Via Cargo (pour les utilisateurs Rust)
+                <code>cargo install --locked jj</code>
+
+                # Sur macOS avec Homebrew
+                <code>brew install jj</code>
+
+                # Sur Windows avec Chocolatey
+                <code>choco install jj</code>
+
+                # Avec Nix
+                <code>nix profile install nixpkgs#jujutsu</code>
+            </pre>
+            
+            <h3 id="premiere-utilisation">Première utilisation</h3>
+            <pre>
+                # Initialiser un nouveau dépôt JJ
+                <code>jj init</code>
+
+                # Cloner un dépôt Git existant
+                <code>jj git clone https://github.com/exemple/projet.git</code>
+
+                # Configurer votre utilisateur
+                <code>jj config set --user user.name "Votre Nom"</code>
+                <code>jj config set --user user.email "votre.email@example.com"</code>
+            </pre>
+            
+            <h3 id="commandes-base">Commandes de base</h3>
+            <pre>
+                # Afficher l'état du dépôt
+                <code>jj status</code>
+
+                # Voir l'historique des commits (affichage graphique par défaut)
+                <code>jj log</code>
+
+                # Créer un commit
+                <code>jj new -m "Message de commit"</code>
+
+                # Ajouter un signet (bookmark)
+                <code>jj bookmark create nom-bookmark</code>
+
+                # Ou utiliser un signet existant
+                <code>jj bookmark track nom-branch@origin</code>
+
+                # pusher vers un dépôt distant
+                <code>jj git push</code>
+
+                # Pousser vers un signet spécifique
+                <code>jj git push -r nom-bookmark</code>
+
+                # Pousser vers un origine spécifique
+                <code>jj git push -r origin nom-bookmark</code>
+
+                # 1. Créer un bookmark qui pointe vers le commit parent
+                <code>jj bookmark create parent-version -r @-</code>
+
+                # 2. Pousser ce bookmark vers GitHub
+                <code>jj git push -r parent-version</code>
+            </pre>
+
+            <h3 id="naviguer-historique">Naviguer dans l'historique</h3>
+            <pre>
+                # Voir l'historique simplifié
+                <code>jj log -r @-</code>
+
+                # Voir les différences dans un commit
+                <code>jj diff -r commit_id</code>
+
+                # Voir les modifications actuelles
+                <code>jj diff</code>
+            </pre>
+        </section>
+
+        <section id="intermediaire">
+            <h2>Niveau Intermédiaire</h2>
+            
+            <h3 id="modele-commits">Modèle de commits</h3>
+            <p>JJ utilise un modèle de commits différent de Git, où chaque commit est identifié par un identifiant court unique et où l'historique est mutable.</p>
+            <pre>
+                # Afficher l'historique détaillé
+                <code>jj log --verbose</code>
+
+                # Utiliser les identificateurs courts
+                <code>jj describe -r commit_id</code>
+
+                # Désactiver l'affichage graphique
+                <code>jj log --no-graph</code>
+            </pre>
+            
+            <h3 id="branches-operations">Bookmarks et opérations</h3>
+            <pre>
+                # Créer un nouveau bookmark
+                <code>jj bookmark create nom-bookmark</code>
+
+                # Changer de branche
+                <code>jj new nom-bookmark</code>
+
+                # Fusionner une branche
+                <code>jj merge nom-bookmark</code>
+
+                # Lister les bookmarks
+                <code>jj bookmark list</code>
+
+                # Supprimer un bookmark
+                <code>jj bookmark delete nom-bookmark</code>
+
+                # Définir un bookmark sur la copie de travail actuelle
+                <code>jj bookmark set nom-bookmark -r @</code>
+    
+                # Définir un bookmark sur le commit parent
+                <code>jj bookmark set nom-bookmark -r @-</code>
+            </pre>
+            
+            <h3 id="modification-historique">Modification de l'historique</h3>
+            <pre>
+                # Modifier le dernier commit
+                <code>jj edit @</code>
+
+                # Squasher plusieurs commits
+                <code>jj squash -r "commit1+commit2+commit3"</code>
+
+                # Récrire un message de commit
+                <code>jj amend -m "Nouveau message de commit"</code>
+
+                # Abandonner des modifications
+                <code>jj abandon</code>
+            </pre>
+            
+            <h3 id="revenir-arriere">Revenir en arrière</h3>
+            <pre>
+                # Annuler les changements non commités
+                <code>jj restore fichier.txt</code>
+
+                # Revenir à une version précédente
+                <code>jj op restore -r commit_id</code>
+
+                # Réinitialiser un bookmark à un commit spécifique
+                <code>jj bookmark set nom-bookmark -r commit_id</code>
+            </pre>
+        </section>
+
+        <section id="avance">
+            <h2>Niveau Avancé</h2>
+            
+            <h3 id="operations-complexes">Opérations complexes</h3>
+            <pre>
+                # Rebasage
+                <code>jj rebase -d destination -s source</code>
+
+                # Cherrypicking de commits
+                <code>jj new -m "Cherry-pick du commit X" commit_id</code>
+
+                # Travailler avec des conflits
+                <code>jj status --conflicts</code>
+                <code>jj resolve fichier.txt</code>
+                <code>jj resolve --list</code>
+            </pre>
+            
+            <h3 id="integration-git">Intégration avec Git</h3>
+            <pre>
+                # Importer depuis un dépôt Git
+                <code>jj git fetch</code>
+
+                # Importer une branche spécifique
+                <code>jj git fetch origin nom-branche</code>
+
+                # Pousser des modifications vers Git
+                <code>jj git push</code>
+
+                # Pousser vers une branche spécifique
+                <code>jj git push -r nom-bookmark</code>
+            </pre>
+            
+            <h3 id="revisions-specifiques">Travailler avec des révisions spécifiques</h3>
+            <pre>
+                # Utiliser des révisions relatives
+                <code>jj log -r "@ | @-"</code>
+
+                # Révisions multiples
+                <code>jj diff -r "nom-branche..autre-branche"</code>
+
+                # Filtrer les révisions
+                <code>jj log -r "author(votre.email@example.com)"</code>
+
+                # Rechercher des commits par contenu
+                <code>jj log -r "description(fix bug)"</code>
+            </pre>
+            
+            <h3 id="configuration-avancee">Configuration avancée</h3>
+            <pre>
+                # Définir des alias personnalisés
+                <code>jj config set --user aliases.s status</code>
+                <code>jj config set --user aliases.l log</code>
+
+                # Configurer l'éditeur de texte
+                <code>jj config set --user ui.editor "code --wait"</code>
+
+                # Créer des templates personnalisés
+                <code>jj config set --user templates.log 'commit_id.short() ++ " " ++ description.first_line()'</code>
+                            </pre>
+        </section>
+
+        <section id="workflows">
+            <h2>Workflows avec JJ</h2>
+            
+            <h3 id="workflow-basique">Workflow basique</h3>
+            <pre>
+                # 1. Créer un nouveau bookmark pour une fonctionnalité
+                <code>jj bookmark create nouvelle-fonctionnalite</code>
+
+                # 2. Travailler sur cette branche
+                <code>jj new nouvelle-fonctionnalite</code>
+
+                # 3. Ajouter et modifier des fichiers
+                <code># (modifiez vos fichiers)</code>
+
+                # 4. Créer un commit
+                <code>jj commit -m "Implémentation de la nouvelle fonctionnalité"</code>
+
+                # 5. Pousser les modifications
+                <code>jj git push</code>
+            </pre>
+            
+            <h3 id="workflow-feature">Développement de fonctionnalités</h3>
+            <pre>
+# 1. Synchroniser avec le dépôt distant
+<code>jj git fetch</code>
+
+# 2. Créer un bookmark pour la fonctionnalité
+<code>jj bookmark create feature-xyz</code>
+
+# 3. Développer par petits commits
+<code>jj commit -m "Première partie de la fonctionnalité"</code>
+<code># (plus de modifications)</code>
+<code>jj commit -m "Deuxième partie de la fonctionnalité"</code>
+
+# 4. Nettoyer l'historique avant de pousser
+<code>jj squash</code>
+<code>jj amend -m "Implémentation complète de la fonctionnalité XYZ"</code>
+
+# 5. Se synchroniser avec la branche principale
+<code>jj merge main</code>
+
+# 6. Résoudre les conflits éventuels
+<code>jj resolve --list</code>
+<code>jj resolve fichier-avec-conflit.txt</code>
+
+# 7. Pousser les modifications
+<code>jj git push -r feature-xyz</code>
+            </pre>
+            
+            <h3 id="workflow-corrections">Corrections de bugs</h3>
+            <pre>
+# 1. Identifier le commit problématique
+<code>jj bisect start</code>
+<code>jj bisect good commit_ancien</code>
+<code>jj bisect bad commit_recent</code>
+
+# 2. Une fois trouvé, créer un bookmark de correction
+<code>jj bookmark create fix-bug-123 -r commit_problematique</code>
+
+# 3. Corriger le bug
+<code>jj edit @</code>
+<code># (modifier les fichiers)</code>
+<code>jj commit -m "Correction du bug #123"</code>
+
+# 4. Appliquer la correction sur la branche principale
+<code>jj merge fix-bug-123</code>
+
+# 5. Pousser la correction
+<code>jj git push</code>
+            </pre>
+        </section>
+
+        <section id="comparaison">
+            <h2>Comparaison avec Git</h2>
+            
+            <h3 id="avantages-jj">Avantages de JJ</h3>
+            <ul>
+                <li><strong>Interface utilisateur intuitive</strong> : Commandes plus cohérentes et moins sujettes aux erreurs</li>
+                <li><strong>Modèle de commits mutable</strong> : Modification de l'historique plus simple, même après avoir partagé des commits</li>
+                <li><strong>Branches virtuelles</strong> : Pas besoin de changer explicitement de branche pour travailler sur différentes fonctionnalités</li>
+                <li><strong>Révisions explicites</strong> : Identification claire des commits avec des IDs courts</li>
+                <li><strong>Gestion des conflits améliorée</strong> : Interface plus conviviale pour résoudre les conflits</li>
+            </ul>
+
+            <h3 id="differences-syntaxe">Différences de syntaxe</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Git</th>
+                        <th>JJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Voir l'état</td>
+                        <td><code>git status</code></td>
+                        <td><code>jj status</code></td>
+                    </tr>
+                    <tr>
+                        <td>Créer un commit</td>
+                        <td><code>git add . && git commit -m "message"</code></td>
+                        <td><code>jj commit -m "message"</code></td>
+                    </tr>
+                    <tr>
+                        <td>Créer une branche</td>
+                        <td><code>git branch nom-branche</code></td>
+                        <td><code>jj bookmark create nom-branche</code></td>
+                    </tr>
+                    <tr>
+                        <td>Se positionner pour travailler sur une branche</td>
+                        <td><code>git checkout nom-branche</code></td>
+                        <td><code>jj new nom-branche</code></td>
+                    </tr>
+                    <tr>
+                        <td>Démarrer un nouveau commit de travail</td>
+                        <td><code>git checkout -b nouvelle-branche</code></td>
+                        <td><code>jj new</code></td>
+                    </tr>
+                    <tr>
+                        <td>Fusionner une branche</td>
+                        <td><code>git merge nom-branche</code></td>
+                        <td><code>jj merge nom-branche</code></td>
+                    </tr>
+                    <tr>
+                        <td>Voir l'historique</td>
+                        <td><code>git log</code></td>
+                        <td><code>jj log</code></td>
+                    </tr>
+                    <tr>
+                        <td>Modifier le dernier commit</td>
+                        <td><code>git commit --amend</code></td>
+                        <td><code>jj amend</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 id="migration">Migration de Git vers JJ</h3>
+            <pre>
+# Cloner un dépôt Git existant avec JJ
+<code>jj git clone https://github.com/user/repo.git</code>
+
+# Importer un dépôt Git local existant
+<code>cd mon-repo-git && jj init --git-repo=.</code>
+
+# Utiliser en parallèle avec Git
+<code>jj git fetch</code>
+<code>jj git push</code>
+            </pre>
+        </section>
+
+        <section id="ressources">
+            <h2>Ressources Supplémentaires</h2>
+            <p>Pour en savoir plus sur JJ, consultez les ressources suivantes :</p>
+            <ul>
+                <li><a href="https://github.com/jj-vcs/jj" target="_blank">Dépôt GitHub officiel de JJ</a></li>
+                <li><a href="https://martinvonz.github.io/jj/documentation/" target="_blank">Documentation officielle de JJ</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023-2025 Mémo JJ. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script-jj.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "Une application Electron de démonstration",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [
+    "Electron",
+    "JavaScript",
+    "Application"
+  ],
+  "author": "Votre Nom",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^36.2.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^26.0.12"
+  }
+}

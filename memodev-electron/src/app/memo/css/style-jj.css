@@ -1,0 +1,414 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #222d32;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: all 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background: #67b246;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: #ffffff;
+    padding: 20px 30px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    scroll-margin-top: 100px; /* Marge de défilement pour les ancres */
+}
+
+section h2 {
+    color: #222d32;
+    border-bottom: 2px solid #67b246;
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+section h3 {
+    color: #519639;
+    margin-top: 25px;
+    scroll-margin-top: 100px;
+}
+
+pre {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+code {
+    display: block;
+    padding: 3px 0;
+    overflow-x: auto;
+    line-height: 1.5;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    color: #333;
+}
+
+pre code {
+    display: block;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    color: #333;
+    padding: 3px 0;
+}
+
+pre > code {
+    padding: 15px;
+}
+
+pre br + .code-line-container {
+    margin-top: 5px;
+}
+
+pre .code-line-container {
+    margin: 3px 0;
+}
+
+.code-container {
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(103, 178, 70, 0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    z-index: 5;
+}
+
+.copy-btn:hover {
+    background: rgba(34, 45, 50, 0.9);
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #519639;
+}
+
+a {
+    color: #67b246;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #222d32;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background: #222d32;
+    color: #ffffff;
+    margin-top: 50px;
+}
+
+/* Styles pour les tableaux de comparaison */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #222d32;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #eaeaea;
+}
+
+td code {
+    background-color: #eaeaea;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #519639;
+}
+
+/* Styles pour le menu déroulant */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #222d32;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 0 0 5px 5px;
+    padding: 8px 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown-content li {
+    display: block;
+    margin: 0;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+    background-color: #67b246;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Animation du menu déroulant */
+.dropdown-content {
+    opacity: 0;
+    transform: translateY(-10px) translateX(-50%);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+    pointer-events: auto;
+}
+
+/* Styles pour les lignes de commande et leurs boutons */
+.code-line-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 2px 0;
+}
+
+.code-line {
+    flex-grow: 1;
+    white-space: pre-wrap;
+}
+
+.copy-cmd-btn {
+    visibility: hidden;
+    opacity: 0;
+    min-width: 24px;
+    height: 24px;
+    padding: 0;
+    background: #67b246;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.code-line-container:hover .copy-cmd-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.copy-cmd-btn:hover {
+    background: #222d32;
+    transform: scale(1.1);
+}
+
+.copy-cmd-btn.copied {
+    background-color: #28a745;
+}
+
+.copy-cmd-btn.copied:after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: -15px;
+    right: -5px;
+    background: #28a745;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles pour le bouton de retour */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Supprimer cette règle car nous utilisons directement le SVG dans le HTML */
+.back-button:before {
+    content: none;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav li {
+        margin: 5px 0;
+    }
+    
+    section {
+        padding: 15px;
+        scroll-margin-top: 150px;
+    }
+    
+    pre {
+        margin: 10px -15px;
+        border-radius: 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        background-color: #1a232a;
+        width: 100%;
+        margin: 5px 0 10px 0;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        transform: none;
+    }
+
+    .header-container {
+        padding: 10px 0;
+    }
+    
+    .back-button {
+        left: 10px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
