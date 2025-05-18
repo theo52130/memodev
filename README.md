@@ -53,7 +53,7 @@ Le projet contient actuellement les fiches mémo suivantes :
 
 1. Clonez ce dépôt :
    ```bash
-   git clone https://github.com/votre-nom/memodev.git
+   git clone https://github.com/theo52130/memodev.git
    ```
 
 2. Ouvrez simplement le fichier `memodev-electron/src/app/index.html` dans votre navigateur web préféré.
@@ -62,7 +62,7 @@ Le projet contient actuellement les fiches mémo suivantes :
 
 1. Clonez ce dépôt :
    ```bash
-   git clone https://github.com/votre-nom/memodev.git
+   git clone https://github.com/theo52130/memodev.git
    ```
 
 2. Naviguez vers le dossier de l'application Electron :
@@ -105,10 +105,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 4. 💾 Committez vos changements (`git commit -m 'Ajout d'une fiche sur [Sujet]'`)
 5. 📤 Poussez vers la branche (`git push origin feature/nouvelle-fiche`)
 6. 🔄 Ouvrez une Pull Request
-
-## 📄 Licence
-
-Ce projet est distribué sous la licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
 
 ## 📅 Dernière mise à jour
 
