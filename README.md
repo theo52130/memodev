@@ -1,5 +1,20 @@
 # 📚 MémoDev
 
+## 📑 Table des matières
+- [📚 MémoDev](#-mémodev)
+  - [📑 Table des matières](#-table-des-matières)
+  - [📋 Description](#-description)
+  - [📦 Contenu actuel](#-contenu-actuel)
+  - [🗂️ Structure du projet](#️-structure-du-projet)
+  - [✨ Fonctionnalités](#-fonctionnalités)
+  - [🚀 Installation](#-installation)
+    - [Option 1 : Visualisation directe des fichiers HTML](#option-1--visualisation-directe-des-fichiers-html)
+    - [Option 2 : Utilisation avec Electron (recommandée)](#option-2--utilisation-avec-electron-recommandée)
+  - [🔍 Utilisation](#-utilisation)
+  - [🛠️ Technologies utilisées](#️-technologies-utilisées)
+  - [🤝 Contribution](#-contribution)
+  - [📅 Dernière mise à jour](#-dernière-mise-à-jour)
+
 ## 📋 Description
 
 MémoDev est une collection de fiches mémo interactives pour les développeurs. Ces fiches servent de référence rapide pour différents langages de programmation, frameworks et outils de développement.
