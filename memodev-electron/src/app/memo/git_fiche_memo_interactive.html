@@ -159,7 +159,7 @@
     <section id="quotidien">
       <h2>Utilisation Quotidienne</h2>
       
-      <h3>Suivi des modifications</h3>
+      <h3 id="suivi-modifications">Suivi des modifications</h3>
       <pre>
 # Voir les modifications non indexées
 <code>git diff</code>
@@ -174,7 +174,7 @@
 <code>git show commit_id</code>
       </pre>
       
-      <h3>Annulation et modification</h3>
+      <h3 id="annulation-modification">Annulation et modification</h3>
       <pre>
 # Annuler les modifications d'un fichier non indexé
 <code>git checkout -- fichier</code>
@@ -195,7 +195,7 @@
 <code>git revert commit_id</code>
       </pre>
       
-      <h3>Gestion des fichiers</h3>
+      <h3 id="gestion-fichiers">Gestion des fichiers</h3>
       <pre>
 # Renommer un fichier
 <code>git mv ancien_nom nouveau_nom</code>
@@ -211,7 +211,7 @@
 <code>echo "dossier/" >> .gitignore</code>
       </pre>
       
-      <h3>Stockage temporaire</h3>
+      <h3 id="stockage-temporaire">Stockage temporaire</h3>
       <pre>
 # Mettre de côté des modifications non commitées
 <code>git stash</code>
@@ -233,7 +233,7 @@
     <section id="branches">
       <h2>Branches & Fusion</h2>
       
-      <h3>Gestion des branches</h3>
+      <h3 id="gestion-branches">Gestion des branches</h3>
       <pre>
 # Lister toutes les branches
 <code>git branch</code>
@@ -257,7 +257,7 @@
 <code>git branch -D nom_branche</code>
       </pre>
       
-      <h3>Fusion et intégration</h3>
+      <h3 id="fusion-integration">Fusion et intégration</h3>
       <pre>
 # Fusionner une branche dans la branche courante
 <code>git merge nom_branche</code>
@@ -278,7 +278,7 @@
 <code>git rebase --continue</code>
       </pre>
       
-      <h3>Gestion des conflits</h3>
+      <h3 id="gestion-conflits">Gestion des conflits</h3>
       <pre>
 # Lors d'un conflit, les fichiers sont marqués avec des marqueurs
 <code><<<<<<< HEAD
@@ -292,7 +292,7 @@ version de la branche à fusionner
 <code>git commit</code>  # ou git merge --continue / git rebase --continue
       </pre>
       
-      <h3>Cherry-picking et historique</h3>
+      <h3 id="cherry-picking">Cherry-picking et historique</h3>
       <pre>
 # Appliquer un commit spécifique sur la branche actuelle
 <code>git cherry-pick commit_id</code>
@@ -311,7 +311,7 @@ version de la branche à fusionner
     <section id="travail-distant">
       <h2>Travail Distant</h2>
       
-      <h3>Configuration des dépôts distants</h3>
+      <h3 id="configuration-depots">Configuration des dépôts distants</h3>
       <pre>
 # Lister les dépôts distants configurés
 <code>git remote -v</code>
@@ -326,7 +326,7 @@ version de la branche à fusionner
 <code>git remote remove nom_distant</code>
       </pre>
       
-      <h3>Synchronisation avec le dépôt distant</h3>
+      <h3 id="synchronisation-depot">Synchronisation avec le dépôt distant</h3>
       <pre>
 # Récupérer les dernières modifications sans fusionner
 <code>git fetch nom_distant</code>
@@ -344,7 +344,7 @@ version de la branche à fusionner
 <code>git push -u nom_distant nom_branche</code>
       </pre>
       
-      <h3>Gestion des branches distantes</h3>
+      <h3 id="branches-distantes">Gestion des branches distantes</h3>
       <pre>
 # Lister les branches distantes
 <code>git branch -r</code>
@@ -359,7 +359,7 @@ version de la branche à fusionner
 <code>git push nom_distant --delete nom_branche</code>
       </pre>
       
-      <h3>Tags et versions</h3>
+      <h3 id="tags-versions">Tags et versions</h3>
       <pre>
 # Créer un tag léger
 <code>git tag v1.0.0</code>
@@ -387,7 +387,7 @@ version de la branche à fusionner
     <section id="github">
       <h2>GitHub</h2>
       
-      <h3>Configuration et authentification</h3>
+      <h3 id="github-auth">Configuration et authentification</h3>
       <pre>
 # Authentification par token personnel (PAT)
 <code>git remote add origin https://username:token@github.com/username/repo.git</code>
@@ -405,7 +405,7 @@ version de la branche à fusionner
 # Puis ajoutez cette clé dans Settings > SSH and GPG keys sur GitHub
       </pre>
       
-      <h3>Pull Requests</h3>
+      <h3 id="pull-requests">Pull Requests</h3>
       <p>Les Pull Requests (PR) sont le cœur de la collaboration sur GitHub, permettant de proposer des modifications et de les examiner avant fusion.</p>
       <pre>
 # Workflow typique de Pull Request
@@ -425,7 +425,7 @@ version de la branche à fusionner
 # 6. Après approbation, la PR peut être fusionnée via l'interface GitHub
       </pre>
       
-      <h3>GitHub Actions</h3>
+      <h3 id="github-actions">GitHub Actions</h3>
       <p>GitHub Actions permet d'automatiser des workflows comme le CI/CD directement dans votre dépôt GitHub.</p>
       <pre>
 # Exemple de fichier de workflow GitHub Actions (.github/workflows/ci.yml)
@@ -452,7 +452,7 @@ jobs:
         run: npm test</code>
       </pre>
       
-      <h3>GitHub Pages</h3>
+      <h3 id="github-pages">GitHub Pages</h3>
       <p>Service d'hébergement gratuit pour les sites web statiques directement depuis un dépôt GitHub.</p>
       <pre>
 # Configurer GitHub Pages pour un site
@@ -470,7 +470,7 @@ jobs:
 # Settings > Pages > Source > Branch: gh-pages
       </pre>
       
-      <h3>GitHub CLI</h3>
+      <h3 id="github-cli">GitHub CLI</h3>
       <p>Outil en ligne de commande pour interagir avec GitHub directement depuis votre terminal.</p>
       <pre>
 # Installation (Ubuntu)
@@ -496,7 +496,7 @@ jobs:
     <section id="gitlab">
       <h2>GitLab</h2>
       
-      <h3>Configuration et authentification</h3>
+      <h3 id="gitlab-auth">Configuration et authentification</h3>
       <pre>
 # Configuration de l'accès par token
 <code>git remote add origin https://oauth2:YOUR_TOKEN@gitlab.com/username/repo.git</code>
@@ -514,7 +514,7 @@ jobs:
 # Puis ajoutez cette clé dans Preferences > SSH Keys sur GitLab
       </pre>
       
-      <h3>Merge Requests</h3>
+      <h3 id="merge-requests">Merge Requests</h3>
       <p>Équivalent des Pull Requests sur GitLab, les Merge Requests (MR) sont utilisées pour proposer et examiner des modifications.</p>
       <pre>
 # Workflow typique de Merge Request
@@ -533,7 +533,7 @@ jobs:
 # 5. Créer la Merge Request sur GitLab (via l'interface web)
       </pre>
       
-      <h3>GitLab CI/CD</h3>
+      <h3 id="gitlab-cicd">GitLab CI/CD</h3>
       <p>GitLab intègre un puissant système CI/CD configurable via un fichier .gitlab-ci.yml.</p>
       <pre>
 # Exemple de fichier .gitlab-ci.yml simple
@@ -564,7 +564,7 @@ deploy:
     - main</code>
       </pre>
       
-      <h3>GitLab Pages</h3>
+      <h3 id="gitlab-pages">GitLab Pages</h3>
       <p>Service d'hébergement pour les sites statiques dans GitLab, similaire à GitHub Pages.</p>
       <pre>
 # Configuration GitLab Pages via .gitlab-ci.yml
@@ -580,7 +580,7 @@ deploy:
     - main</code>
       </pre>
       
-      <h3>GitLab Snippets et Gists</h3>
+      <h3 id="gitlab-snippets">GitLab Snippets et Gists</h3>
       <p>GitLab permet de partager des extraits de code via les Snippets.</p>
       <pre>
 # Utiliser glab CLI pour GitLab (équivalent de gh pour GitHub)
@@ -601,7 +601,7 @@ deploy:
     <section id="avance">
       <h2>Fonctionnalités Avancées</h2>
       
-      <h3>Rebase interactif</h3>
+      <h3 id="rebase-interactif">Rebase interactif</h3>
       <pre>
 # Réorganiser, modifier ou fusionner les 3 derniers commits
 <code>git rebase -i HEAD~3</code>
@@ -615,7 +615,7 @@ deploy:
 # drop = supprimer le commit
       </pre>
       
-      <h3>Sous-modules</h3>
+      <h3 id="sous-modules">Sous-modules</h3>
       <pre>
 # Ajouter un sous-module
 <code>git submodule add https://github.com/utilisateur/repo.git chemin/vers/sous-module</code>
@@ -631,7 +631,7 @@ deploy:
 <code>git submodule update --remote</code>
       </pre>
       
-      <h3>Hooks Git</h3>
+      <h3 id="hooks-git">Hooks Git</h3>
       <p>Les hooks permettent d'exécuter des scripts à différentes étapes du processus Git.</p>
       <pre>
 # Localisation des hooks
@@ -649,7 +649,7 @@ echo "Vérification du code avant commit..."
 npm run lint</code>
       </pre>
       
-      <h3>Git bisect pour déboguer</h3>
+      <h3 id="git-bisect">Git bisect pour déboguer</h3>
       <pre>
 # Démarrer la recherche de bug
 <code>git bisect start</code>
@@ -668,7 +668,7 @@ npm run lint</code>
 <code>git bisect reset</code>
       </pre>
       
-      <h3>Filtrage de l'historique</h3>
+      <h3 id="filtrage-historique">Filtrage de l'historique</h3>
       <pre>
 # Rechercher un terme dans les commits
 <code>git log -S "terme_recherche"</code>
@@ -690,7 +690,7 @@ npm run lint</code>
     <section id="astuces">
       <h2>Astuces & Bonnes Pratiques</h2>
       
-      <h3>Bonnes pratiques pour les commits</h3>
+      <h3 id="bonnes-pratiques-commits">Bonnes pratiques pour les commits</h3>
       <ul>
         <li><strong>Commits atomiques</strong> : Chaque commit devrait représenter une seule modification logique</li>
         <li><strong>Messages clairs</strong> : Utilisez des messages descriptifs avec un format cohérent</li>
@@ -706,7 +706,7 @@ authentication. Includes password reset functionality
 and email verification."</code>
       </pre>
       
-      <h3>Workflow Git efficace</h3>
+      <h3 id="workflow-git">Workflow Git efficace</h3>
       <ul>
         <li><strong>GitFlow</strong> : Utilise des branches principales (main/develop) et des branches spécifiques (feature/hotfix)</li>
         <li><strong>GitHub Flow</strong> : Workflow simplifié basé sur les pull requests</li>
@@ -732,7 +732,7 @@ and email verification."</code>
 <code>git tag -a v1.0.0 -m "Version 1.0.0"</code>
       </pre>
       
-      <h3>Alias Git utiles</h3>
+      <h3 id="alias-git">Alias Git utiles</h3>
       <p>Configurez des commandes raccourcies dans votre .gitconfig :</p>
       <pre>
 # Dans ~/.gitconfig
@@ -747,7 +747,7 @@ and email verification."</code>
 <code>git st</code>  # au lieu de git status
       </pre>
       
-      <h3>Résolution de problèmes courants</h3>
+      <h3 id="resolution-problemes">Résolution de problèmes courants</h3>
       <pre>
 # Récupérer des modifications après un reset --hard
 <code>git reflog</code>

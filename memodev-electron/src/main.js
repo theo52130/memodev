@@ -1,4 +1,4 @@
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow, session, shell } = require('electron');
 const path = require('path');
 const { ipcMain } = require('electron');
 
@@ -6,8 +6,8 @@ let mainWindow; // Déclaré globalement pour être accessible dans tout le fich
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1100,
+        height: 750,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -35,6 +35,28 @@ function createWindow() {
         mainWindow = null;
     });
 }
+
+// Lorsqu'une nouvelle fenêtre est créée
+app.on('web-contents-created', (event, contents) => {
+    // Intercepter les événements d'ouverture de nouvelles fenêtres
+    contents.on('will-navigate', (event, navigationUrl) => {
+        // Si l'URL n'est pas locale, l'ouvrir dans le navigateur externe
+        if (!navigationUrl.startsWith('file://')) {
+            event.preventDefault();
+            shell.openExternal(navigationUrl);
+        }
+    });
+    
+    // Intercepter les liens qui ouvrent une nouvelle fenêtre
+    contents.setWindowOpenHandler(({ url }) => {
+        // Si l'URL n'est pas locale, l'ouvrir dans le navigateur externe
+        if (!url.startsWith('file://')) {
+            shell.openExternal(url);
+            return { action: 'deny' };
+        }
+        return { action: 'allow' };
+    });
+});
 
 app.on('ready', createWindow);
 

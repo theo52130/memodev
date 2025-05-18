@@ -1,13 +1,13 @@
 :root {
   --primary: #2563eb;
   --secondary: #4f46e5;
-  --react: #087ea4;
-  --next: #0070f3;
-  --git: #e94e31;
-  --jj: #4a6fa5;
-  --php: #777BB3;
+  --react: #61dafb; /* Mise à jour vers la couleur turquoise du logo React */
+  --next: #000000; /* Mise à jour vers le noir, couleur principale de Next.js */
+  --git: #F05033; /* Mise à jour vers la couleur rouge-orange du logo Git */
+  --jj: #67b246; /* Mise à jour vers le vert utilisé dans style-jj.css */
+  --php: #777BB3; /* Couleur violet-bleu du logo PHP */
   --js: #f7df1e;
-  --docker: #2496ed;
+  --docker: #2496ed; /* Couleur bleue du logo Docker */
   --background: #f8fafc;
   --card-bg: #ffffff;
   --text-primary: #1e293b;
@@ -151,6 +151,14 @@ main {
 
 .btn-next {
   background: var(--next);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ajout d'un effet de dégradé au survol pour le bouton Next.js */
+.btn-next:hover {
+  background: linear-gradient(to right, #7928CA, #FF0080);
+  opacity: 1;
 }
 
 .btn-git {

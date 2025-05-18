@@ -19,12 +19,56 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#debutant">Débutant</a></li>
-                <li><a href="#intermediaire">Intermédiaire</a></li>
-                <li><a href="#avance">Avancé</a></li>
-                <li><a href="#workflows">Workflows</a></li>
-                <li><a href="#comparaison">Comparaison avec Git</a></li>
-                <li><a href="#ressources">Ressources</a></li>
+                <li class="dropdown">
+                    <a href="#debutant">Débutant</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#introduction">Introduction à JJ</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#premiere-utilisation">Première utilisation</a></li>
+                        <li><a href="#commandes-base">Commandes de base</a></li>
+                        <li><a href="#naviguer-historique">Naviguer dans l'historique</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#intermediaire">Intermédiaire</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#modele-commits">Modèle de commits</a></li>
+                        <li><a href="#branches-operations">Bookmarks et opérations</a></li>
+                        <li><a href="#modification-historique">Modification de l'historique</a></li>
+                        <li><a href="#revenir-arriere">Revenir en arrière</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#avance">Avancé</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#operations-complexes">Opérations complexes</a></li>
+                        <li><a href="#integration-git">Intégration avec Git</a></li>
+                        <li><a href="#revisions-specifiques">Révisions spécifiques</a></li>
+                        <li><a href="#configuration-avancee">Configuration avancée</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#workflows">Workflows</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#workflow-basique">Workflow basique</a></li>
+                        <li><a href="#workflow-feature">Développement de fonctionnalités</a></li>
+                        <li><a href="#workflow-corrections">Corrections de bugs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#comparaison">Comparaison avec Git</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#avantages-jj">Avantages de JJ</a></li>
+                        <li><a href="#differences-syntaxe">Différences de syntaxe</a></li>
+                        <li><a href="#migration">Migration de Git vers JJ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#ressources">Ressources</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#ressources">Documentation et liens</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -401,7 +445,7 @@
             <p>Pour en savoir plus sur JJ, consultez les ressources suivantes :</p>
             <ul>
                 <li><a href="https://github.com/jj-vcs/jj" target="_blank">Dépôt GitHub officiel de JJ</a></li>
-                <li><a href="https://martinvonz.github.io/jj/documentation/" target="_blank">Documentation officielle de JJ</a></li>
+                <li><a href="https://jj-vcs.github.io/jj/latest/" target="_blank">Documentation officielle de JJ</a></li>
             </ul>
         </section>
     </main>

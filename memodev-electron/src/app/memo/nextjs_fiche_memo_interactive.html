@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémo Next.js</title>
+    <link rel="stylesheet" href="css/style-next.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="back-button" title="Retour à l'accueil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <h1>Mémo Next.js</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="dropdown">
+                    <a href="#debutant">Niveau Débutant</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#structure-projet">Structure du projet</a></li>
+                        <li><a href="#pages-router">Pages Router</a></li>
+                        <li><a href="#premier-composant">Premier composant</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#intermediaire">Niveau Intermédiaire</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#data-fetching">Récupération de données</a></li>
+                        <li><a href="#app-router">App Router</a></li>
+                        <li><a href="#routing-avance">Routing avancé</a></li>
+                        <li><a href="#api-routes">API Routes</a></li>
+                        <li><a href="#layouts">Layouts & Templates</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#avance">Niveau Avancé</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#server-components">Server Components</a></li>
+                        <li><a href="#optimisation">Optimisation & Performance</a></li>
+                        <li><a href="#middleware">Middleware</a></li>
+                        <li><a href="#ssr-ssg">SSR vs SSG vs ISR</a></li>
+                        <li><a href="#typescript">TypeScript</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#pratique">Cas Pratiques</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#authentification">Authentification</a></li>
+                        <li><a href="#forms">Formulaires</a></li>
+                        <li><a href="#database">Base de données</a></li>
+                        <li><a href="#deployment">Déploiement</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#ecosystem">Écosystème</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#vercel">Vercel</a></li>
+                        <li><a href="#state-management">Gestion d'état</a></li>
+                        <li><a href="#frameworks">Frameworks basés sur Next.js</a></li>
+                        <li><a href="#librairies">Librairies compatibles</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#ressources">Ressources</a>
+                    <ul class="dropdown-content">
+                        <li><a href="https://nextjs.org/docs" target="_blank">Documentation officielle</a></li>
+                        <li><a href="https://nextjs.org/learn" target="_blank">Tutoriel Next.js</a></li>
+                        <li><a href="https://github.com/vercel/next.js/tree/canary/examples" target="_blank">Exemples</a></li>
+                        <li><a href="https://vercel.com/templates" target="_blank">Templates</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="debutant">
+            <h2>Niveau Débutant</h2>
+            
+            <h3 id="introduction">Introduction à Next.js</h3>
+            <p>Next.js est un framework React qui offre des fonctionnalités comme le rendu côté serveur (SSR), la génération de sites statiques (SSG), et plus encore :</p>
+            <ul>
+                <li><strong>Framework React</strong> : Basé sur React mais avec des fonctionnalités supplémentaires</li>
+                <li><strong>Rendu côté serveur</strong> : Améliore les performances et le SEO</li>
+                <li><strong>Routing basé sur le système de fichiers</strong> : Pas besoin de configurations complexes</li>
+                <li><strong>Zero configuration</strong> : Prêt à l'emploi avec Babel, TypeScript, ESLint, etc.</li>
+                <li><strong>Hot Code Reloading</strong> : Actualisation automatique pendant le développement</li>
+                <li><strong>Optimisé pour la production</strong> : Code splitting automatique, prefetching, etc.</li>
+            </ul>
+            
+            <h3 id="installation">Installation</h3>
+            <pre>
+# Créer un nouveau projet Next.js
+<code>npx create-next-app mon-projet-next</code>
+
+# Avec TypeScript
+<code>npx create-next-app@latest mon-projet-next --typescript</code>
+
+# Installation manuelle dans un projet existant
+<code>npm install next react react-dom</code>
+
+# Ajouter les scripts dans package.json
+<code>"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+}</code>
+            </pre>
+            
+            <h3 id="structure-projet">Structure du projet</h3>
+            <pre>
+# Structure de base d'un projet Next.js avec Pages Router
+<code>mon-projet/
+├── node_modules/      # Dépendances installées
+├── public/            # Fichiers statiques (images, fonts, etc.)
+│   ├── favicon.ico
+│   └── images/
+├── pages/             # Pages et routes basées sur les fichiers
+│   ├── _app.js        # Composant racine personnalisé
+│   ├── _document.js   # Document HTML personnalisé
+│   ├── index.js       # Page d'accueil (/)
+│   ├── about.js       # Page "/about"
+│   └── api/           # Routes API
+│       └── hello.js   # API endpoint "/api/hello"
+├── styles/            # CSS, modules CSS, etc.
+├── components/        # Composants réutilisables
+├── lib/              # Fonctions utilitaires et configurations
+├── .next/             # Sortie de build (généré automatiquement)
+├── .env.local         # Variables d'environnement locales
+├── next.config.js     # Configuration Next.js
+└── package.json       # Dépendances et scripts</code>
+
+# Structure de base avec App Router (Next.js 13+)
+<code>mon-projet/
+├── app/               # App Router (Next.js 13+)
+│   ├── layout.js      # Layout racine
+│   ├── page.js        # Page d'accueil (/)
+│   ├── about/         # Route "/about"
+│   │   └── page.js    # Composant de page 
+│   └── api/           # Routes API
+│       └── route.js   # API endpoint
+├── public/            # Fichiers statiques
+├── components/        # Composants réutilisables
+└── ...</code>
+            </pre>
+            
+            <h3 id="pages-router">Pages Router</h3>
+            <pre>
+# Pages de base (pages/index.js)
+<code>export default function Home() {
+  return (
+    &lt;div>
+      &lt;h1>Accueil&lt;/h1>
+      &lt;p>Bienvenue sur mon site Next.js!&lt;/p>
+    &lt;/div>
+  )
+}</code>
+
+# Pages avec paramètres dynamiques (pages/posts/[id].js)
+<code>import { useRouter } from 'next/router'
+
+export default function Post() {
+  const router = useRouter()
+  const { id } = router.query
+
+  return (
+    &lt;div>
+      &lt;h1>Post {id}&lt;/h1>
+    &lt;/div>
+  )
+}</code>
+
+# Navigation entre pages
+<code>import Link from 'next/link'
+
+export default function NavBar() {
+  return (
+    &lt;nav>
+      &lt;Link href="/">Accueil&lt;/Link>
+      &lt;Link href="/about">À propos&lt;/Link>
+      &lt;Link href="/posts/[id]" as="/posts/1">
+        Premier post
+      &lt;/Link>
+    &lt;/nav>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="premier-composant">Premier composant Next.js</h3>
+            <pre>
+# components/Header.js
+<code>import Link from 'next/link'
+
+export default function Header() {
+  return (
+    &lt;header>
+      &lt;nav>
+        &lt;Link href="/">
+          &lt;a>Accueil&lt;/a>
+        &lt;/Link>
+        &lt;Link href="/about">
+          &lt;a>À propos&lt;/a>
+        &lt;/Link>
+      &lt;/nav>
+    &lt;/header>
+  )
+}</code>
+
+# Utilisation du composant dans une page
+<code>import Header from '../components/Header'
+
+export default function HomePage() {
+  return (
+    &lt;div>
+      &lt;Header />
+      &lt;main>
+        &lt;h1>Bienvenue!&lt;/h1>
+      &lt;/main>
+    &lt;/div>
+  )
+}</code>
+            </pre>
+        </section>
+
+        <section id="intermediaire">
+            <h2>Niveau Intermédiaire</h2>
+            
+            <h3 id="data-fetching">Récupération de données</h3>
+            <pre>
+# getStaticProps - Données chargées au build
+<code>// pages/posts.js
+export async function getStaticProps() {
+  // Cette fonction s'exécute côté serveur au moment du build
+  const res = await fetch('https://api.example.com/posts')
+  const posts = await res.json()
+
+  return {
+    props: {
+      posts, // Les données seront passées au composant
+    },
+    // Revalidate: régénère la page toutes les 10 secondes (ISR)
+    revalidate: 10,
+  }
+}
+
+export default function Posts({ posts }) {
+  return (
+    &lt;ul>
+      {posts.map((post) => (
+        &lt;li key={post.id}>{post.title}&lt;/li>
+      ))}
+    &lt;/ul>
+  )
+}</code>
+
+# getServerSideProps - Données chargées à chaque requête
+<code>export async function getServerSideProps(context) {
+  // Cette fonction s'exécute à chaque requête
+  const { params, req, res } = context
+  const userData = await fetchUser(params.id)
+
+  return {
+    props: { user: userData },
+  }
+}
+
+export default function UserProfile({ user }) {
+  return &lt;div>Bonjour {user.name}!&lt;/div>
+}</code>
+
+# getStaticPaths - Définir les chemins à pré-rendre
+<code>// pages/posts/[id].js
+export async function getStaticPaths() {
+  const res = await fetch('https://api.example.com/posts')
+  const posts = await res.json()
+
+  // Générer le tableau de chemins, un objet avec params
+  const paths = posts.map((post) => ({
+    params: { id: post.id.toString() },
+  }))
+
+  return {
+    paths,
+    fallback: 'blocking', // Options: false, true, 'blocking'
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const res = await fetch(`https://api.example.com/posts/${params.id}`)
+  const post = await res.json()
+
+  return {
+    props: { post },
+  }
+}</code>
+
+# SWR pour le client-side data fetching
+<code>import useSWR from 'swr'
+
+function fetcher(...args) {
+  return fetch(...args).then(res => res.json())
+}
+
+function Profile() {
+  const { data, error } = useSWR('/api/user', fetcher)
+
+  if (error) return &lt;div>Erreur de chargement&lt;/div>
+  if (!data) return &lt;div>Chargement...&lt;/div>
+
+  return &lt;div>Bonjour {data.name}!&lt;/div>
+}</code>
+            </pre>
+            
+            <h3 id="app-router">App Router (Next.js 13+)</h3>
+            <pre>
+# Page de base (app/page.js)
+<code>export default function Home() {
+  return (
+    &lt;main>
+      &lt;h1>Accueil&lt;/h1>
+      &lt;p>Bienvenue sur mon site avec App Router!&lt;/p>
+    &lt;/main>
+  );
+}</code>
+
+# Route dynamique avec App Router (app/posts/[slug]/page.js)
+<code>export default function Post({ params }) {
+  return (
+    &lt;main>
+      &lt;h1>Post: {params.slug}&lt;/h1>
+    &lt;/main>
+  );
+}</code>
+
+# Génération de routes statiques
+<code>export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}</code>
+
+# Data Fetching dans App Router
+<code>async function getData() {
+  const res = await fetch('https://api.example.com/data');
+  
+  if (!res.ok) {
+    throw new Error('Erreur de chargement');
+  }
+  
+  return res.json();
+}
+
+export default async function Page() {
+  const data = await getData();
+  
+  return (
+    &lt;main>
+      &lt;h1>{data.title}&lt;/h1>
+      &lt;p>{data.content}&lt;/p>
+    &lt;/main>
+  );
+}</code>
+            </pre>
+            
+            <h3 id="routing-avance">Routing avancé</h3>
+            <pre>
+# Navigation programmatique
+<code>import { useRouter } from 'next/router';
+
+export default function LoginForm() {
+  const router = useRouter();
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await loginUser();
+    
+    if (success) {
+      // Redirection après connexion
+      router.push('/dashboard');
+    }
+  };
+  
+  return (
+    &lt;form onSubmit={handleSubmit}>
+      {/* Champs du formulaire */}
+    &lt;/form>
+  );
+}</code>
+
+# Routes imbriquées avec App Router
+<code>app/
+├── dashboard/
+│   ├── layout.js         # Layout pour /dashboard/*
+│   ├── page.js           # /dashboard
+│   ├── settings/
+│   │   └── page.js       # /dashboard/settings
+│   └── profile/
+│       └── page.js       # /dashboard/profile</code>
+
+# Groupes de routes (n'affectent pas l'URL)
+<code>app/
+├── (marketing)/          # Groupe non reflété dans l'URL
+│   ├── about/
+│   │   └── page.js       # /about
+│   └── contact/
+│       └── page.js       # /contact
+└── (dashboard)/
+    ├── layout.js         # Layout partagé
+    ├── account/
+    │   └── page.js       # /account
+    └── settings/
+        └── page.js       # /settings</code>
+
+# Routes parallèles (@folder)
+<code>app/
+├── layout.js
+├── page.js
+└── dashboard/
+    ├── layout.js
+    ├── page.js
+    ├── @team/
+    │   ├── page.js       # Slot nommé 'team'
+    │   └── settings/
+    │       └── page.js   # /dashboard/settings (slot team)
+    └── @projects/
+        └── page.js       # Slot nommé 'projects'</code>
+            </pre>
+            
+            <h3 id="api-routes">API Routes</h3>
+            <pre>
+# API Route simple (pages/api/hello.js)
+<code>export default function handler(req, res) {
+  res.status(200).json({ message: 'Hello World!' })
+}</code>
+
+# Méthodes HTTP
+<code>export default function handler(req, res) {
+  if (req.method === 'POST') {
+    // Process a POST request
+    const { name } = req.body
+    res.status(200).json({ message: `Hello ${name}!` })
+  } else {
+    // Handle any other HTTP method
+    res.setHeader('Allow', ['POST'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+  }
+}</code>
+
+# API Route dynamique (pages/api/users/[id].js)
+<code>export default function handler(req, res) {
+  const { id } = req.query
+  
+  if (req.method === 'GET') {
+    // Obtenir les données de l'utilisateur avec l'ID
+    res.status(200).json({ id, name: 'Jean Dupont' })
+  } else if (req.method === 'PUT') {
+    // Mettre à jour l'utilisateur
+    res.status(200).json({ id, name: req.body.name })
+  } else if (req.method === 'DELETE') {
+    // Supprimer l'utilisateur
+    res.status(200).json({ id, deleted: true })
+  } else {
+    res.setHeader('Allow', ['GET', 'PUT', 'DELETE'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+  }
+}</code>
+
+# Route Handlers (App Router)
+<code>// app/api/users/route.js
+export async function GET() {
+  const users = await getUsers()
+  return Response.json(users)
+}
+
+export async function POST(request) {
+  const data = await request.json()
+  const newUser = await createUser(data)
+  return Response.json(newUser, { status: 201 })
+}</code>
+            </pre>
+            
+            <h3 id="layouts">Layouts & Templates</h3>
+            <pre>
+# Layout partagé (Pages Router)
+<code>// pages/_app.js
+import '../styles/globals.css'
+import Layout from '../components/Layout'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    &lt;Layout>
+      &lt;Component {...pageProps} />
+    &lt;/Layout>
+  )
+}
+
+export default MyApp
+
+// components/Layout.js
+export default function Layout({ children }) {
+  return (
+    &lt;div>
+      &lt;header>
+        &lt;nav>{/* Navigation */}&lt;/nav>
+      &lt;/header>
+      
+      &lt;main>{children}&lt;/main>
+      
+      &lt;footer>{/* Pied de page */}&lt;/footer>
+    &lt;/div>
+  )
+}</code>
+
+# Layout avec App Router
+<code>// app/layout.js
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="fr">
+      &lt;body>
+        &lt;header>
+          &lt;nav>{/* Navigation */}&lt;/nav>
+        &lt;/header>
+        
+        {children}
+        
+        &lt;footer>{/* Pied de page */}&lt;/footer>
+      &lt;/body>
+    &lt;/html>
+  )
+}
+
+// app/dashboard/layout.js (layout imbriqué)
+export default function DashboardLayout({ children }) {
+  return (
+    &lt;div>
+      &lt;aside>
+        {/* Barre latérale du tableau de bord */}
+      &lt;/aside>
+      
+      &lt;div className="dashboard-content">
+        {children}
+      &lt;/div>
+    &lt;/div>
+  )
+}</code>
+
+# Templates (App Router)
+<code>// app/template.js
+export default function Template({ children }) {
+  return (
+    &lt;div className="template">
+      {/* Contrairement aux layouts, les templates sont recréés à chaque navigation */}
+      {children}
+    &lt;/div>
+  )
+}</code>
+            </pre>
+        </section>
+
+        <section id="avance">
+            <h2>Niveau Avancé</h2>
+            
+            <h3 id="server-components">Server Components</h3>
+            <pre>
+# Server Component de base
+<code>// app/users/page.js
+// Ce composant est un Server Component par défaut
+async function getUsers() {
+  const res = await fetch('https://api.example.com/users')
+  return res.json()
+}
+
+export default async function UsersPage() {
+  const users = await getUsers()
+  
+  return (
+    &lt;div>
+      &lt;h1>Utilisateurs&lt;/h1>
+      &lt;ul>
+        {users.map(user => (
+          &lt;li key={user.id}>{user.name}&lt;/li>
+        ))}
+      &lt;/ul>
+    &lt;/div>
+  )
+}</code>
+
+# Client Component
+<code>// components/Counter.js
+'use client' // Cette directive indique un Client Component
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  
+  return (
+    &lt;div>
+      &lt;p>Compteur: {count}&lt;/p>
+      &lt;button onClick={() => setCount(count + 1)}>
+        Incrémenter
+      &lt;/button>
+    &lt;/div>
+  )
+}</code>
+
+# Utilisation de composants clients et serveurs
+<code>// app/page.js (Server Component)
+import Counter from '../components/Counter'
+
+export default async function Page() {
+  const data = await fetchData()
+  
+  return (
+    &lt;div>
+      &lt;h1>{data.title}&lt;/h1>
+      {/* Composant Client utilisé dans un Server Component */}
+      &lt;Counter />
+    &lt;/div>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="optimisation">Optimisation & Performance</h3>
+            <pre>
+# Optimisation des images
+<code>import Image from 'next/image'
+
+export default function Avatar() {
+  return (
+    &lt;Image
+      src="/images/profile.jpg"
+      alt="Avatar"
+      width={64}
+      height={64}
+      priority // Charge en priorité
+    />
+  )
+}</code>
+
+# Optimisation des fonts
+<code>// app/layout.js
+import { Inter } from 'next/font/google'
+
+// Définir la police
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="fr" className={inter.className}>
+      &lt;body>{children}&lt;/body>
+    &lt;/html>
+  )
+}</code>
+
+# Préchargement des données
+<code>// app/preload.js
+import { preload } from 'next/navigation'
+
+export function prloadPosts() {
+  void preload('/api/posts', { as: 'fetch' })
+}
+
+// Utilisation
+import { preloadPosts } from './preload'
+
+export default function Page() {
+  // Précharger les données lors du survol du lien
+  return (
+    &lt;div onMouseEnter={preloadPosts}>
+      &lt;Link href="/posts">Voir les posts&lt;/Link>
+    &lt;/div>
+  )
+}</code>
+
+# Lazy loading des composants
+<code>// app/page.js
+import { lazy } from 'react'
+
+// Composant chargé uniquement quand nécessaire
+const HeavyComponent = lazy(() => import('../components/HeavyComponent'))
+
+export default function Page() {
+  return (
+    &lt;div>
+      &lt;Suspense fallback={&lt;div>Chargement...&lt;/div>}>
+        &lt;HeavyComponent />
+      &lt;/Suspense>
+    &lt;/div>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="middleware">Middleware</h3>
+            <pre>
+# Middleware de base (middleware.js à la racine)
+<code>import { NextResponse } from 'next/server'
+ 
+export function middleware(request) {
+  // Vérifier le token d'authentification
+  const token = request.cookies.get('token')?.value
+  
+  // Rediriger si l'utilisateur n'est pas authentifié
+  if (!token && request.nextUrl.pathname.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+  
+  return NextResponse.next()
+}
+
+// Configurer les chemins où le middleware s'applique
+export const config = {
+  matcher: ['/dashboard/:path*', '/api/admin/:path*'],
+}</code>
+
+# Middleware avec modification des headers
+<code>export function middleware(request) {
+  const response = NextResponse.next()
+  
+  // Ajouter des headers à la réponse
+  response.headers.set('x-hello', 'world')
+  response.headers.set('Content-Security-Policy', "default-src 'self'")
+  
+  return response
+}</code>
+
+# Middleware avec géolocalisation
+<code>export function middleware(request) {
+  // Information de géolocalisation (disponible uniquement en production)
+  const country = request.geo?.country || 'FR'
+  
+  // Personnaliser le contenu selon la localisation
+  if (country === 'US') {
+    return NextResponse.rewrite(new URL('/en-US' + request.nextUrl.pathname, request.url))
+  }
+  
+  return NextResponse.next()
+}</code>
+            </pre>
+            
+            <h3 id="ssr-ssg">SSR vs SSG vs ISR</h3>
+            <pre>
+# Server-Side Rendering (SSR)
+<code>// pages/ssr-page.js
+export async function getServerSideProps() {
+  // Cette fonction s'exécute à chaque requête
+  const res = await fetch('https://api.example.com/data')
+  const data = await res.json()
+  
+  return { props: { data } }
+}
+
+export default function Page({ data }) {
+  return &lt;div>{data.title}&lt;/div>
+}</code>
+
+# Static Site Generation (SSG)
+<code>// pages/ssg-page.js
+export async function getStaticProps() {
+  // Cette fonction s'exécute une fois lors du build
+  const res = await fetch('https://api.example.com/data')
+  const data = await res.json()
+  
+  return { props: { data } }
+}
+
+export default function Page({ data }) {
+  return &lt;div>{data.title}&lt;/div>
+}</code>
+
+# Incremental Static Regeneration (ISR)
+<code>// pages/isr-page.js
+export async function getStaticProps() {
+  const res = await fetch('https://api.example.com/data')
+  const data = await res.json()
+  
+  return { 
+    props: { data },
+    revalidate: 60, // Régénérer cette page toutes les 60 secondes
+  }
+}
+
+export default function Page({ data }) {
+  // Affiche la dernière version mise en cache
+  // puis régénère une nouvelle version en arrière-plan
+  return &lt;div>{data.title}&lt;/div>
+}</code>
+
+# App Router (Next.js 13+)
+<code>// app/page.js
+// Par défaut: Server Component avec mise en cache activée
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', { 
+    // Options de cache et revalidation
+    cache: 'force-cache',      // Équivalent à SSG
+    // OU
+    next: { revalidate: 60 }   // Équivalent à ISR
+    // OU
+    cache: 'no-store'          // Équivalent à SSR
+  }).then(res => res.json())
+  
+  return &lt;div>{data.title}&lt;/div>
+}</code>
+            </pre>
+            
+            <h3 id="typescript">TypeScript</h3>
+            <pre>
+# Types pour les props de page
+<code>// pages/user/[id].tsx
+import { GetServerSideProps, NextPage } from 'next'
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface UserPageProps {
+  user: User;
+}
+
+// Typage de la fonction getServerSideProps
+export const getServerSideProps: GetServerSideProps<UserPageProps> = async (context) => {
+  const { id } = context.params as { id: string };
+  const res = await fetch(`https://api.example.com/users/${id}`);
+  const user = await res.json();
+  
+  return {
+    props: { user },
+  };
+};
+
+// Typage du composant Next.js
+const UserPage: NextPage<UserPageProps> = ({ user }) => {
+  return (
+    &lt;div>
+      &lt;h1>{user.name}&lt;/h1>
+      &lt;p>{user.email}&lt;/p>
+    &lt;/div>
+  );
+};
+
+export default UserPage;</code>
+
+# Types pour les API Routes
+<code>// pages/api/users/[id].ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+type User = {
+  id: string;
+  name: string;
+};
+
+type ErrorResponse = {
+  error: string;
+};
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<User | ErrorResponse>
+) {
+  const { id } = req.query as { id: string };
+  
+  // Vérifier si l'utilisateur existe
+  if (id === '1') {
+    res.status(200).json({ id, name: 'Jean Dupont' });
+  } else {
+    res.status(404).json({ error: 'Utilisateur non trouvé' });
+  }
+}</code>
+
+# Types avec App Router
+<code>// app/page.tsx
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+}
+
+async function getPosts(): Promise<Post[]> {
+  const res = await fetch('https://api.example.com/posts');
+  if (!res.ok) {
+    throw new Error('Erreur de chargement');
+  }
+  return res.json();
+}
+
+export default async function PostsPage() {
+  const posts: Post[] = await getPosts();
+  
+  return (
+    &lt;div>
+      {posts.map((post) => (
+        &lt;article key={post.id}>
+          &lt;h2>{post.title}&lt;/h2>
+          &lt;p>{post.content}&lt;/p>
+        &lt;/article>
+      ))}
+    &lt;/div>
+  );
+}</code>
+            </pre>
+        </section>
+
+        <section id="pratique">
+            <h2>Cas Pratiques</h2>
+            
+            <h3 id="authentification">Authentification</h3>
+            <pre>
+# Utilisation de NextAuth.js
+<code>// pages/api/auth/[...nextauth].js
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+
+export default NextAuth({
+  providers: [
+    Providers.GitHub({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    Providers.Email({
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM,
+    }),
+  ],
+  database: process.env.DATABASE_URL,
+  session: { jwt: true },
+  callbacks: {
+    async jwt(token, user, account, profile, isNewUser) {
+      // Ajouter des données au JWT
+      if (user?.role) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session(session, token) {
+      // Ajouter des données à la session
+      session.user.role = token.role;
+      return session;
+    },
+  },
+});</code>
+
+# Utilisation du hook useSession
+<code>// components/AuthStatus.js
+'use client'
+
+import { useSession, signIn, signOut } from "next-auth/react"
+
+export default function AuthStatus() {
+  const { data: session, status } = useSession()
+  
+  if (status === "loading") {
+    return &lt;div>Vérification de l'authentification...&lt;/div>
+  }
+  
+  if (status === "authenticated") {
+    return (
+      &lt;div>
+        Connecté en tant que {session.user.email}
+        &lt;button onClick={() => signOut()}>Se déconnecter&lt;/button>
+      &lt;/div>
+    )
+  }
+  
+  return (
+    &lt;div>
+      Non connecté
+      &lt;button onClick={() => signIn()}>Se connecter&lt;/button>
+    &lt;/div>
+  )
+}</code>
+
+# Protection des routes avec middleware
+<code>// middleware.js
+import { withAuth } from "next-auth/middleware"
+
+// Middleware qui protège les routes
+export default withAuth({
+  callbacks: {
+    authorized({ req, token }) {
+      // Autorise seulement si l'utilisateur est admin
+      return token?.role === "admin"
+    },
+  },
+})
+
+export const config = {
+  matcher: ["/admin/:path*"],
+}</code>
+            </pre>
+            
+            <h3 id="forms">Formulaires</h3>
+            <pre>
+# Formulaire client simple
+<code>'use client'
+
+import { useState } from 'react'
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [status, setStatus] = useState('')
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('loading')
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+      console.error('Erreur:', error)
+    }
+  }
+  
+  return (
+    &lt;form onSubmit={handleSubmit}>
+      &lt;div>
+        &lt;label htmlFor="name">Nom&lt;/label>
+        &lt;input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      &lt;/div>
+      
+      &lt;div>
+        &lt;label htmlFor="email">Email&lt;/label>
+        &lt;input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      &lt;/div>
+      
+      &lt;div>
+        &lt;label htmlFor="message">Message&lt;/label>
+        &lt;textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+      &lt;/div>
+      
+      &lt;button type="submit" disabled={status === 'loading'}>
+        {status === 'loading' ? 'Envoi...' : 'Envoyer'}
+      &lt;/button>
+      
+      {status === 'success' && (
+        &lt;p className="success">Message envoyé avec succès!&lt;/p>
+      )}
+      
+      {status === 'error' && (
+        &lt;p className="error">Erreur lors de l'envoi du message.&lt;/p>
+      )}
+    &lt;/form>
+  )
+}</code>
+
+# Traitement côté serveur (API Route)
+<code>// pages/api/contact.js
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' })
+  }
+
+  try {
+    const { name, email, message } = req.body
+    
+    // Validation
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: 'Missing fields' })
+    }
+    
+    // Traitement (ex: envoi d'email, sauvegarde en base de données, etc.)
+    // await sendEmail({ name, email, message })
+    // await saveToDatabase({ name, email, message })
+    
+    return res.status(200).json({ message: 'Message sent successfully' })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: 'Server error' })
+  }
+}</code>
+
+# Server Actions (Next.js 13.4+)
+<code>// app/contact/actions.js
+'use server'
+
+export async function submitContact(formData) {
+  const name = formData.get('name')
+  const email = formData.get('email')
+  const message = formData.get('message')
+  
+  // Validation
+  if (!name || !email || !message) {
+    return { error: 'All fields are required' }
+  }
+  
+  try {
+    // Traitement
+    // await sendEmail({ name, email, message })
+    
+    return { success: true }
+  } catch (e) {
+    return { error: 'Failed to submit form' }
+  }
+}
+
+// app/contact/page.js
+'use client'
+
+import { useFormState } from 'react-dom'
+import { submitContact } from './actions'
+
+export default function Page() {
+  const [state, formAction] = useFormState(submitContact, {})
+  
+  return (
+    &lt;form action={formAction}>
+      &lt;input name="name" required />
+      &lt;input name="email" type="email" required />
+      &lt;textarea name="message" required />
+      
+      &lt;button type="submit">Envoyer&lt;/button>
+      
+      {state.error && &lt;p className="error">{state.error}&lt;/p>}
+      {state.success && &lt;p className="success">Merci pour votre message!&lt;/p>}
+    &lt;/form>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="database">Base de données</h3>
+            <pre>
+# Prisma avec Next.js
+<code>// lib/prisma.js
+import { PrismaClient } from '@prisma/client'
+
+const globalForPrisma = global as unknown as { prisma: PrismaClient }
+
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: ['query'],
+  })
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma</code>
+
+# Requêtes avec Prisma
+<code>// app/users/[id]/page.js
+import { prisma } from '@/lib/prisma'
+import { notFound } from 'next/navigation'
+
+export async function generateStaticParams() {
+  const users = await prisma.user.findMany({ select: { id: true } })
+  
+  return users.map((user) => ({
+    id: user.id.toString(),
+  }))
+}
+
+export default async function UserPage({ params }) {
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(params.id) },
+    include: { posts: true },
+  })
+  
+  if (!user) {
+    return notFound()
+  }
+  
+  return (
+    &lt;div>
+      &lt;h1>{user.name}&lt;/h1>
+      &lt;p>Email: {user.email}&lt;/p>
+      
+      &lt;h2>Publications ({user.posts.length})&lt;/h2>
+      &lt;ul>
+        {user.posts.map((post) => (
+          &lt;li key={post.id}>{post.title}&lt;/li>
+        ))}
+      &lt;/ul>
+    &lt;/div>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="deployment">Déploiement</h3>
+            <pre>
+# Vercel (déploiement recommandé)
+<code># 1. Connecter votre dépôt GitHub à Vercel.com
+
+# 2. Configurer les variables d'environnement dans Vercel
+# - Production: Dans les paramètres du projet
+# - Locale: Dans un fichier .env.local
+
+# 3. Commandes pour déployer manuellement
+$ npm run build   # Construction du projet
+$ npm run start   # Démarrer en mode production
+
+# 4. Configuration vercel.json (optionnel)
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" }
+      ]
+    }
+  ]
+}</code>
+
+# Déploiement sur AWS Amplify
+<code># 1. Connecter votre dépôt à AWS Amplify
+
+# 2. Configuration de build (amplify.yml)
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*</code>
+
+# Docker
+<code># Dockerfile
+FROM node:18-alpine AS base
+
+# Installer les dépendances
+FROM base AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# Construction de l'application
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+# Image de production
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV production
+
+# Copier les fichiers nécessaires
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# Exposer le port et démarrer l'application
+EXPOSE 3000
+CMD ["node", "server.js"]</code>
+            </pre>
+        </section>
+
+        <section id="ecosystem">
+            <h2>Écosystème Next.js</h2>
+            
+            <h3 id="vercel">Vercel</h3>
+            <ul>
+                <li><strong>Créateur de Next.js</strong> : Vercel est la société qui développe et maintient Next.js</li>
+                <li><strong>Déploiement optimisé</strong> : Platform optimisée pour les applications Next.js</li>
+                <li><strong>Edge Functions</strong> : Exécution de code à la périphérie du réseau</li>
+                <li><strong>Analytics</strong> : Mesures de performance Web Vitals intégrées</li>
+                <li><strong>Previews</strong> : Déploiement automatique de previews sur les Pull Requests</li>
+                <li><strong>Intégrations</strong> : Connexions simplifiées avec des services tiers (CMS, base de données)</li>
+            </ul>
+            
+            <h3 id="state-management">Gestion d'état</h3>
+            <pre>
+# Zustand
+<code>// store.js
+import create from 'zustand'
+
+interface BearState {
+  bears: number
+  increasePopulation: () => void
+  removeAllBears: () => void
+}
+
+const useStore = create<BearState>((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+}))
+
+// Utilisation
+'use client'
+
+import useStore from '@/lib/store'
+
+export default function BearCounter() {
+  const bears = useStore((state) => state.bears)
+  const increase = useStore((state) => state.increasePopulation)
+  
+  return (
+    &lt;div>
+      &lt;h1>{bears} bears&lt;/h1>
+      &lt;button onClick={increase}>Un ours de plus&lt;/button>
+    &lt;/div>
+  )
+}</code>
+
+# Jotai
+<code>// atoms.js
+import { atom } from 'jotai'
+
+export const countAtom = atom(0)
+export const doubleCountAtom = atom((get) => get(countAtom) * 2)
+
+// Utilisation
+'use client'
+
+import { useAtom } from 'jotai'
+import { countAtom, doubleCountAtom } from '@/lib/atoms'
+
+export default function Counter() {
+  const [count, setCount] = useAtom(countAtom)
+  const [doubleCount] = useAtom(doubleCountAtom)
+  
+  return (
+    &lt;div>
+      &lt;h1>Count: {count}&lt;/h1>
+      &lt;h2>Double: {doubleCount}&lt;/h2>
+      &lt;button onClick={() => setCount(count + 1)}>Incrémenter&lt;/button>
+    &lt;/div>
+  )
+}</code>
+
+# React Context pour les états locaux
+<code>// context/ThemeContext.js
+'use client'
+
+import { createContext, useContext, useState } from 'react'
+
+const ThemeContext = createContext(undefined)
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light')
+  
+  return (
+    &lt;ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    &lt;/ThemeContext.Provider>
+  )
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+  return context
+}
+
+// Utilisation
+'use client'
+
+import { ThemeProvider, useTheme } from '@/context/ThemeContext'
+
+function ThemedComponent() {
+  const { theme, setTheme } = useTheme()
+  return (
+    &lt;div className={theme}>
+      Current theme: {theme}
+      &lt;button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle theme
+      &lt;/button>
+    &lt;/div>
+  )
+}
+
+export default function Page() {
+  return (
+    &lt;ThemeProvider>
+      &lt;ThemedComponent />
+    &lt;/ThemeProvider>
+  )
+}</code>
+            </pre>
+            
+            <h3 id="frameworks">Frameworks basés sur Next.js</h3>
+            <ul>
+                <li><strong>Nextra</strong> : Framework de documentation et blog basé sur Next.js et MDX</li>
+                <li><strong>Next Commerce</strong> : Framework e-commerce basé sur Next.js</li>
+                <li><strong>Blitz.js</strong> : Framework fullstack inspiré de Ruby on Rails, construit sur Next.js</li>
+                <li><strong>RedwoodJS</strong> : Framework fullstack avec Next.js comme composant frontend</li>
+            </ul>
+            
+            <h3 id="librairies">Librairies compatibles</h3>
+            <pre>
+# Tailwind CSS
+<code>// Installation
+$ npm install -D tailwindcss postcss autoprefixer
+$ npx tailwindcss init -p
+
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+// globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Utilisation
+export default function Button() {
+  return (
+    &lt;button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Cliquez ici
+    &lt;/button>
+  )
+}</code>
+
+# Chakra UI
+<code>// Installation
+$ npm i @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion
+
+// app/providers.js
+'use client'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
+export function Providers({ children }) {
+  return (
+    &lt;ChakraProvider>
+      {children}
+    &lt;/ChakraProvider>
+  )
+}
+
+// app/layout.js
+import { Providers } from './providers'
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="fr">
+      &lt;body>
+        &lt;Providers>
+          {children}
+        &lt;/Providers>
+      &lt;/body>
+    &lt;/html>
+  )
+}
+
+// Utilisation
+'use client'
+
+import { Button, Box, Heading } from '@chakra-ui/react'
+
+export default function Page() {
+  return (
+    &lt;Box p={4}>
+      &lt;Heading>Bienvenue&lt;/Heading>
+      &lt;Button colorScheme="blue">Cliquez ici&lt;/Button>
+    &lt;/Box>
+  )
+}</code>
+
+# tRPC
+<code>// Installation
+$ npm install @trpc/server @trpc/client @trpc/react-query @trpc/next zod react-query
+
+// server/trpc/trpc.ts
+import { initTRPC } from '@trpc/server';
+
+const t = initTRPC.create();
+
+export const router = t.router;
+export const publicProcedure = t.procedure;
+
+// server/trpc/routers/user.ts
+import { z } from 'zod';
+import { publicProcedure, router } from '../trpc';
+
+export const userRouter = router({
+  getById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      // Récupérer l'utilisateur avec l'ID
+      return { id: input.id, name: 'Example User' };
+    }),
+  
+  create: publicProcedure
+    .input(z.object({ name: z.string().min(3) }))
+    .mutation(async ({ input }) => {
+      // Créer un utilisateur
+      return { id: 'new-id', name: input.name };
+    }),
+});</code>
+            </pre>
+        </section>
+
+        <section id="ressources">
+            <h2>Ressources Supplémentaires</h2>
+            <p>Pour en savoir plus sur Next.js, consultez ces ressources:</p>
+            <ul>
+                <li><a href="https://nextjs.org/docs" target="_blank">Documentation officielle</a> - Guide complet et référence</li>
+                <li><a href="https://nextjs.org/learn" target="_blank">Tutoriel interactif Next.js</a> - Cours gratuit complet</li>
+                <li><a href="https://github.com/vercel/next.js/tree/canary/examples" target="_blank">Exemples officiels</a> - Collection de projets pratiques</li>
+                <li><a href="https://vercel.com/templates" target="_blank">Templates Vercel</a> - Modèles prêts à l'emploi</li>
+                <li><a href="https://github.com/unicodeveloper/awesome-nextjs" target="_blank">Awesome Next.js</a> - Collection de ressources</li>
+                <li><a href="https://nextjs.org/blog" target="_blank">Blog Next.js</a> - Actualités et cas d'utilisation</li>
+                <li><a href="https://www.youtube.com/c/VercelHQ" target="_blank">Chaîne YouTube Vercel</a> - Vidéos et tutoriels</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023-2025 Mémo Next.js. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script-next.js" defer></script>
+</body>
+</html>

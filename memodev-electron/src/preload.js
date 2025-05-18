@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, shell } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
     sendMessage: (channel, data) => {
@@ -15,4 +15,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
             ipcRenderer.on(channel, (event, ...args) => func(...args));
         }
     }
+});
+
+// Exposer des API sécurisées au renderer process
+contextBridge.exposeInMainWorld('electron', {
+  openExternal: (url) => {
+    shell.openExternal(url);
+  }
 });
